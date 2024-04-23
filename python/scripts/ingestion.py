@@ -6,14 +6,14 @@ from datetime import datetime
 
 import requests
 import pandas as pd
-from dotenv import load_dotenv
 import logging
+from dotenv import load_dotenv
 
 from config import configs
 import utils
 
 config_file = configs
-load_dotenv()
+load_dotenv(f"{config_file["repo_path"]}/.env")
 logging.basicConfig(level=logging.INFO)
 
 def ingestion():

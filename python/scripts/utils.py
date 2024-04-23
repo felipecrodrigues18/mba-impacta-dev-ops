@@ -1,8 +1,6 @@
-from datetime import date
 import os
-import re
 import pandas as pd
-from datetime import datetime
+import datetime
 import mysql.connector
 from sqlalchemy import create_engine   
 
@@ -47,11 +45,13 @@ class Saneamento:
 
 def error_handler(exception_error, stage):
     
-    log = [stage, type(exception_error).__name__, exception_error,datetime.now()]
+    log = [stage, type(exception_error).__name__, exception_error,
+           datetime.datetime.now()]
     logdf = pd.DataFrame(log).T
     
     if not os.path.exists("logs_file.txt"):
         logdf.columns = ['stage', 'type', 'error', 'datetime']
         logdf.to_csv("logs_file.txt", index=False,sep = ";")
     else:
-        logdf.to_csv("logs_file.txt", index=False, mode='a', header=False, sep = ";")
+        logdf.to_csv("logs_file.txt", index=False, mode='a',
+                     header=False, sep = ";")

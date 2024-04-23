@@ -1,9 +1,11 @@
 import os
-local_path = os.path.abspath(os.getcwd())
-data_path = os.path.dirname(local_path) 
+local_path = os.path.abspath(__file__)
+python_path = os.path.dirname(os.path.dirname(local_path))
+repo_path = os.path.dirname(python_path)
 
 configs = {
-    "meta_path": f"{local_path}/scripts/metadado.xlsx",
-    "raw_path": f"{local_path}/data/raw/raw_",
-    "work_path": f"{local_path}/data/work/work_cadastro.csv",
+    "repo_path": repo_path,
+    "meta_path": f"{python_path}/scripts/metadado.xlsx",
+    "raw_path": f"{repo_path}/data/raw/raw_",
+    "work_path": f"{repo_path}/data/work/work_cadastro.csv",
 }
