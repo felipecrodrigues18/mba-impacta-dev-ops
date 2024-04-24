@@ -5,7 +5,7 @@ services:
         build: ./python/
         command: sh -c "sleep 10s ; python3 scripts/ingestion.py"
         depends_on:
-        - mysql
+            - mysql
 
     mysql:
         restart: always

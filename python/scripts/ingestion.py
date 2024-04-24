@@ -9,9 +9,9 @@ import logging
 # Third party libraries
 import requests
 import pandas as pd
+import mysql.connector
 from dotenv import load_dotenv
 from requests.exceptions import ReadTimeout
-import mysql.connector
 
 # Repo modules
 import utils
@@ -20,7 +20,7 @@ from log_config import setup_logging
 
 config_file = configs
 logs_path = config_file['logs_path']
-load_dotenv(f"{config_file['repo_path']}/.env")
+load_dotenv(f"{config_file['python_path']}/.env")
 setup_logging(os.path.join(logs_path, 'ingestion.logs'))
 
 
