@@ -5,6 +5,7 @@ repo_path = os.path.dirname(python_path)
 
 configs = {
     "repo_path": repo_path,
+    "logs_path": f"{python_path}/logs",
     "meta_path": f"{python_path}/scripts/metadado.xlsx",
     "raw_path": f"{repo_path}/data/raw/raw_",
     "work_path": f"{repo_path}/data/work/work_cadastro.csv",

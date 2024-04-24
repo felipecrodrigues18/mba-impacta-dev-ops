@@ -1,0 +1,21 @@
+2024-04-24 07:47:41,917 - INFO - Iniciando a ingest�o
+2024-04-24 07:48:07,612 - INFO - Start ingestion
+2024-04-24 07:48:51,702 - INFO - Start ingestion
+2024-04-24 07:53:17,960 - INFO - Start ingestion
+2024-04-24 07:53:30,327 - INFO - Start ingestion
+2024-04-24 07:54:01,137 - INFO - Start ingestion
+2024-04-24 07:54:48,306 - INFO - Start ingestion
+2024-04-24 07:54:54,315 - ERROR - HTTPSConnectionPool(host='randomuser.me', port=443): Read timed out. (read timeout=0.1)
+2024-04-24 07:56:19,035 - INFO - Start ingestion
+2024-04-24 07:56:23,051 - ERROR - HTTPSConnectionPool(host='randomuser.me', port=443): Read timed out. (read timeout=0.1)
+2024-04-24 07:56:54,017 - INFO - Start ingestion
+2024-04-24 07:56:56,050 - ERROR - HTTPSConnectionPool(host='randomuser.me', port=443): Read timed out. (read timeout=0.1)
+2024-04-24 08:21:49,670 - INFO - Start ingestion
+2024-04-24 08:21:50,189 - ERROR - HTTPSConnectionPool(host='randomuser.me', port=443): Read timed out. (read timeout=0.1)
+2024-04-24 08:22:05,554 - INFO - Start ingestion
+2024-04-24 08:22:06,120 - INFO - Start preparation
+2024-04-24 08:23:06,233 - INFO - Start ingestion
+2024-04-24 08:23:06,800 - INFO - Start preparation
+2024-04-24 08:23:07,366 - INFO - Rename data
+2024-04-24 08:23:19,894 - INFO - Data typing
+2024-04-24 08:23:57,448 - INFO - Saving data
