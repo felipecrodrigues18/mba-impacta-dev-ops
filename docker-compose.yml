@@ -6,6 +6,9 @@ services:
         command: sh -c "sleep 10s ; python3 scripts/ingestion.py"
         depends_on:
             - mysql
+        volumes:
+            - ./python/logs:/usr/src/python-app/logs
+            - ./python/data:/usr/src/python-app/data
 
     mysql:
         restart: always
