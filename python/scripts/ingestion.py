@@ -10,7 +10,6 @@ import logging
 import requests
 import pandas as pd
 import mysql.connector
-from dotenv import load_dotenv
 from requests.exceptions import ReadTimeout
 
 # Repo modules
@@ -20,7 +19,6 @@ from log_config import setup_logging
 
 config_file = configs
 logs_path = config_file['logs_path']
-load_dotenv(f"{config_file['python_path']}/.env")
 setup_logging(os.path.join(logs_path, 'ingestion.logs'))
 
 
@@ -33,7 +31,7 @@ def ingestion() -> str:
         _description_
     """
     logging.info("Start ingestion")
-    api_url = os.getenv('URL')
+    api_url = "https://randomuser.me/api/?results=10"
 
     try:
         response = requests.get(api_url, timeout=30).json()
