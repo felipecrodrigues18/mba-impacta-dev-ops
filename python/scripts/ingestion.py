@@ -64,7 +64,7 @@ def preparation(file: str):
     except FileNotFoundError as err:
         logging.error(str(err))
         raise err
-        
+
     san = utils.Saneamento(df, config_file)
 
     logging.info("Rename data")
