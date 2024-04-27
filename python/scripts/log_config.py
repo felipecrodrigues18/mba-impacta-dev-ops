@@ -6,16 +6,11 @@ DESCRIPTION
     error handling log creation.
 
 FUNCTIONS:
-    setup_logging(filename)
-        Saves logging file according to
-        message and severity info path filename.
+    setup_logging(file_name)
+        Saves logging file with severity and message.
 
 EXAMPLE:
-    message: "Get API data"
-    user: "John Snow"
-    stage: "Data fetching"
-    log_file_path: "logs.txt"
-        handler(message, user, stage, log_file_path)
+    handler(file_name)
 """
 
 # Standard libraries
@@ -23,24 +18,18 @@ import os
 import logging
 
 
-def setup_logging(filename: str):
+def setup_logging(file_name: str):
     """
-    Create or add error handling messages to file in log directory.
+    Create loggin file and write down loggig messages based on severity.
 
     Parameters
     ----------
-    filename : str
-        Logging path. Must be provided explicitly as a keyword argument.
+    file_name : str
+        Loggin file path.
     """
 
-    log_dir = os.path.dirname(filename)
-    if not os.path.isdir(log_dir):
-        exception_error = FileNotFoundError(
-            f"Directory {log_dir} not found.")
-        raise exception_error
-
     logging.basicConfig(
-        filename=filename,
+        filename=file_name,
         format='%(asctime)s - %(levelname)s - %(message)s',
-        level=logging.INFO
+        level=logging.DEBUG
     )

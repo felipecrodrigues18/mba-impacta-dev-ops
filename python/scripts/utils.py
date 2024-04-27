@@ -1,6 +1,7 @@
 
+
+
 # Standard libraries
-import os
 import datetime
 
 # Third party libraries
@@ -10,11 +11,32 @@ from sqlalchemy import create_engine
 
 
 class Saneamento:
+    """
+    Data treatment and ingestion pipeline.
+    """    
 
+    def __init__(self, data: pd.DataFrame, configs: dict):
+        """
+        Class constructor.
 
-    def __init__(self, data, configs):
+        Parameters
+        ----------
+        data : pd.DataFrame
+            _description_
+        configs : dict
+            _description_
+
+        Raises
+        ------
+        err
+            _description_
+        """        
         self.data = data
-        self.metadado =  pd.read_excel(configs["meta_path"])
+
+        try:
+            self.metadado =  pd.read_excel(configs["meta_path"])
+        except FileNotFoundError as err:
+            raise err
         self.len_cols = max(list(self.metadado["id"]))
         self.colunas = list(self.metadado['nome_original'])
         self.colunas_new = list(self.metadado['nome'])
