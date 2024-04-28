@@ -50,3 +50,4 @@ Makefile
 
 # Logs
 logs/
+data/

@@ -15,13 +15,30 @@ from dotenv import load_dotenv
 # Repo modules
 import utils
 from config import configs
-from log_config import setup_logging
 
 # Set environment
 config_file = configs
-logs_path = config_file['logs_path']
-setup_logging(os.path.join(logs_path, 'ingestion.logs'))
 load_dotenv(os.path.join(config_file['python_path'], '.env'))
+
+logs_path = config_file['logs_path']
+
+# Create or get the logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logging_formater = logging.Formatter(
+    '%(asctime)s - %(levelname)s - %(message)s')
+
+logging_fh = logging.FileHandler(filename=os.path.join(
+    logs_path, 'ingestion.logs'), encoding='utf-8')
+logging_fh.setLevel(logging.DEBUG)
+logging_fh.setFormatter(logging_formater)
+
+logging_sh = logging.StreamHandler()
+logging_sh.setLevel(logging.DEBUG)
+logging_sh.setFormatter(logging_formater)
+
+logger.addHandler(logging_fh)
+logger.addHandler(logging_sh)
 
 
 def ingestion() -> str:
@@ -36,6 +53,8 @@ def ingestion() -> str:
     Raises
     err
         requests.exceptions.InvalidURL : The URL provided was somehow invalid.
+        requests.exceptions.MissingSchema : The URL scheme (e.g. http or
+            https) is missing.
         requests.exceptions.ConnectionError : A Connection error occurred.
         requests.exceptions.ConnectTimeout : The request timed out while
             trying to connect to the remote server.
@@ -46,29 +65,32 @@ def ingestion() -> str:
             into json
         OSError: Cannot save file into a non-existent directory.
     """
-    logging.info("Start ingestion")
+    logger.info("Start ingestion")
     api_url = os.getenv("URL")
 
     try:
         r = requests.get(api_url, timeout=30)
         r.raise_for_status()
     except requests.exceptions.InvalidURL as err:
-        logging.error(err)
+        logger.error(str(err))
+        raise err
+    except requests.exceptions.MissingSchema as err:
+        logger.error(str(err))
         raise err
     except requests.exceptions.ConnectTimeout as err:
-        logging.error(err)
+        logger.error(str(err))
         raise err
     except requests.exceptions.ReadTimeout as err:
-        logging.error(err)
+        logger.error(str(err))
         raise err
     except requests.exceptions.ConnectionError as err:
-        logging.error(err)
+        logger.error(str(err))
         raise err
     except requests.exceptions.HTTPError as err:
-        logging.error(err)
+        logger.error(str(err))
         raise err
     except requests.exceptions.JSONDecodeError as err:
-        logging.error(err)
+        logger.error(str(err))
         raise err
 
     data = r.json()['results']
@@ -80,7 +102,6 @@ def ingestion() -> str:
         file = f"{config_file['raw_path']}{str(uuid.uuid4())}.csv"
         df.to_csv(file, sep=";", index=False)
     except OSError as err:
-        logging.error(str(err))
         raise err
 
     return file
@@ -96,25 +117,28 @@ def preparation(file: str):
         Path to file in raw layer.
     """
 
-    logging.info("Start preparation")
+    logger.info("Start preparation")
     try:
         df = pd.read_csv(file, sep=";")
         san = utils.Saneamento(df, config_file)
     except FileNotFoundError as err:
-        logging.error(str(err))
+        logger.error(str(err))
         raise err
 
-    logging.info("Rename data")
-    san.select_rename()
+    logger.info("Rename data")
+    san.rename_cols()
 
-    logging.info("Data typing")
+    logger.info("Treat str data")
+    san.treat_str()
+
+    logger.info("Data typing")
     san.tipagem()
 
-    logging.info("Saving data")
+    logger.info("Saving data")
     try:
         san.save_work()
     except mysql.connector.Error as err:
-        logging.error(str(err))
+        logger.error(str(err))
 
 
 if __name__ == '__main__':
