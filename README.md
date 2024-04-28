@@ -1,4 +1,4 @@
-# de04_dataops
+# mba-impacta-dev-ops
 
 Projeto disciplina de DataOps
 
@@ -11,16 +11,26 @@ Projeto disciplina de DataOps
 ```
 dataops04
 │   README.md
-│   .gitignore 
+│   .gitignore
 │   .github/workflows
 |
-└───scripts
-│   │   ingestion.py
-│   │   config.py
-│   │   utils.py
-│   │   metadado.xlsx
+└───python
+|   └───scripts
+│           │   ingestion.py
+│           │   config.py
+│           │   utils.py
+│           │   metadado.xlsx
+|   └───data
+│           │   raw
+|   |   Dockerfile
+|   |   requirements.txt
 |
-└────data
-|   │   └─── raw
-|   │   └─── work
+└───mysql
+|   └───db
+│           │   create_database.sql
+|   |   Dockerfile
+|
+└───execution_report
+│   │   execution_report.docx
 ```
+
