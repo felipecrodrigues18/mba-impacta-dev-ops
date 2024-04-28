@@ -36,6 +36,7 @@ dataops04
 
 ## **Detalhes**:
 - ingestion.py
+<<<<<<< HEAD
     - Define logging handlers para ingestão de logs em arquivo e streaming
     de logs em terminal de execução.
     - ingestion():
