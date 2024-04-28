@@ -34,3 +34,8 @@ dataops04
 │   │   execution_report.docx
 ```
 
+## **Detalhes**:
+- ingestion.py
+    - coisinha
+- Pipeline de dados
+- Ferramentas básicas em dataops
