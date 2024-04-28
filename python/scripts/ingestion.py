@@ -128,11 +128,11 @@ def preparation(file: str):
     logger.info("Rename data")
     san.rename_cols()
 
-    logger.info("Treat str data")
-    san.treat_str()
-
     logger.info("Data typing")
     san.tipagem()
+
+    logger.info("Treat str data")
+    san.treat_str()
 
     logger.info("Saving data")
     try:
