@@ -1,15 +1,20 @@
-# mba-impacta-dev-ops
-Final project on data ingestion, containerized solution, tested on Github Actions
+# de04_dataops
+
+Projeto disciplina de DataOps
+
+
+## **Objetivos**:
+- Ciclo de vida de projeto de dados
+- Pipeline de dados
+- Ferramentas básicas em dataops
+
+```
 dataops04
 │   README.md
 │   .gitignore 
 │   .github/workflows
 |
-|___excecution_report
-|    |  excecution_report.docx
-|
-|___python
-|scripts
+└───scripts
 │   │   ingestion.py
 │   │   config.py
 │   │   utils.py
@@ -18,3 +23,4 @@ dataops04
 └────data
 |   │   └─── raw
 |   │   └─── work
+```
