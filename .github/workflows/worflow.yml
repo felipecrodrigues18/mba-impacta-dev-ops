@@ -56,7 +56,7 @@ jobs:
           context: ./python
           file: ./python/Dockerfile
           push: true
-          tags: luccaszullianesilva/pythonapp:latest
+          tags: felipecannas/pythonapp:latest
 
       - name: Build and push MySQL Docker image
         uses: docker/build-push-action@v2
@@ -64,4 +64,4 @@ jobs:
           context: ./mysql
           file: ./mysql/Dockerfile
           push: true
-          tags: luccaszullianesilva/mysql:latest
+          tags: felipecannas/mysql:latest
